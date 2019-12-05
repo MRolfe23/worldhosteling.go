@@ -2,10 +2,8 @@ package com.worldhosteling.go.domain;
 
 import lombok.Data;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Data
@@ -13,14 +11,19 @@ import java.util.List;
 public class PrivateMessage {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @OneToOne
+    @NotEmpty(message = "Must include an account from.")
     private Account from;
 
     @OneToOne
+    @NotEmpty(message = "Must include an account to.")
     private GroupChat to;
 
+    @Column(nullable = false)
+    @NotEmpty(message = "Must include content.")
     private String messageContent;
 
     @ElementCollection(targetClass=String.class)

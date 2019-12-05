@@ -46,6 +46,12 @@ public class PostTest {
     @Autowired
     private NotificationPostService notificationPostService;
 
+    @Autowired
+    private PhotoRepository photoRepository;
+
+    @Autowired
+    private PhotoService photoService;
+
     public PostTest() {}
 
     @Test
@@ -281,6 +287,98 @@ public class PostTest {
         }
 
         System.out.println(postWithComments.toString());
+
+    }
+
+    @Test
+    public void testPhotoRepositoryPost() {
+
+        //region Account creation
+        // set main account
+        Account account = new Account();
+        account.setFirstName("Michael");
+        account.setLastName("Rolfe");
+        account.setUserName("MRolfe");
+        account.setAboutMe("This is my about me!");
+        account.setAccountType("Developer Of WorldHosteling");
+        account.setBackgroundPicture("This is the background pic to be found in file");
+        account.setProfilePicture("This is the profile pic to be found in file");
+        account.setPassword("Password");
+
+        // set friends for list
+        List<Account> friendsList = new ArrayList<>();
+        Account friend1 = new Account();
+        friend1.setFirstName("Geraldine");
+        friend1.setLastName("Del Rosario");
+        friend1.setUserName("GeralDaaaanng");
+        friendsList.add(friend1);
+        accountService.saveAccount(friend1);
+
+        Account friend2 = new Account();
+        friend2.setFirstName("Bipin");
+        friend2.setLastName("Butala");
+        friend2.setUserName("BipBip");
+        friendsList.add(friend2);
+        Account bip = accountService.saveAccount(friend2);
+
+        Account friend3 = new Account();
+        friend3.setFirstName("Brad");
+        friend3.setLastName("Kangaroo");
+        friend3.setUserName("BearalRoll");
+        friendsList.add(friend3);
+        accountService.saveAccount(friend3);
+
+        account.setFriendList(friendsList);
+
+
+        accountService.saveAccount(account);
+        //endregion
+
+        // creating post
+        Post post = new Post();
+        NotificationPost notificationPost1 = new NotificationPost();
+        post.setContent("This is the first post ever!!");
+        post.setFrom(account);
+        post.setTo(friend1);
+
+        // set photo list
+        List<Photo> picList = new ArrayList<>();
+
+        Photo photo1 = new Photo();
+        photo1.setPhotoPath("AccountId/Photo/Post/PhotoNameAndOrId");
+        photo1.setCaption("Day at the beach!");
+        Photo savePic1 = photoRepository.save(photo1);
+        picList.add(savePic1);
+
+        Photo photo2 = new Photo();
+        photo2.setPhotoPath("AccountId/Photo/Post/PhotoNameAndOrId");
+        photo2.setCaption("Day in the Hills!");
+        Photo savePic2 = photoRepository.save(photo2);
+        picList.add(savePic2);
+
+        Photo photo3 = new Photo();
+        photo3.setPhotoPath("AccountId/Photo/Post/PhotoNameAndOrId");
+        photo3.setCaption("Day in the Forest!");
+        Photo savePic3 = photoRepository.save(photo3);
+        picList.add(savePic3);
+
+        post.setPhotoList(picList);
+
+        System.out.println(picList.get(1));
+        System.out.println(picList.get(2));
+        System.out.println(picList.get(0));
+
+        notificationPost1.setFrom(account);
+        notificationPost1.setTo(friend1);
+        notificationPost1.setPost(post);
+
+        // save post
+        Post savedPost = postRepository.save(post);
+        Assert.assertNotNull(savedPost.getId());
+        NotificationPost savedNotificationPost = notificationPostService.saveNotificationPost(notificationPost1);
+        Assert.assertNotNull(savedNotificationPost.getId());
+
+        System.out.println(post.toString());
 
     }
 

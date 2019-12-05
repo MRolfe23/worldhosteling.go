@@ -13,10 +13,14 @@ public interface AccountService {
 
     List<Account> findAccountByUserName(String username);
 
-    List<Account> findAllAccountsWhereNameLike(String firstName, String lastName);
+    List<Account> findAllAccountsWhereNameLike(String name);
 
     List<Account> findAllAccounts();
 
-    void deleteAccount(Account account);
+    Account findAccountByEmail(String email);
+
+    Account verifyAccountCredentials(String email, String password);
+
+    void deleteAccount(String id);
 
 }

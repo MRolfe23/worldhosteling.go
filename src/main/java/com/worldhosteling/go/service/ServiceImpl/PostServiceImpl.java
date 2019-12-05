@@ -2,6 +2,7 @@ package com.worldhosteling.go.service.ServiceImpl;
 
 import com.worldhosteling.go.domain.Account;
 import com.worldhosteling.go.domain.Post;
+import com.worldhosteling.go.repository.PhotoRepository;
 import com.worldhosteling.go.repository.PostRepository;
 import com.worldhosteling.go.service.PostService;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ public class PostServiceImpl implements PostService {
 
     private PostRepository postRepository;
 
-    PostServiceImpl(PostRepository postRepository) {
+    PostServiceImpl(PostRepository postRepository, PhotoRepository photoRepository) {
         this.postRepository = postRepository;
     }
 

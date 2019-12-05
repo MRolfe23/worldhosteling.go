@@ -3,7 +3,6 @@ package com.worldhosteling.go.service.ServiceImpl;
 import com.worldhosteling.go.domain.Account;
 import com.worldhosteling.go.repository.AccountRepository;
 import com.worldhosteling.go.service.AccountService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,8 +33,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public List<Account> findAllAccountsWhereNameLike(String firstName, String lastName) {
-        return accountRepository.findAllByFirstNameLikeOrLastNameLike(firstName, lastName);
+    public List<Account> findAllAccountsWhereNameLike(String name) {
+        return accountRepository.findAllByFirstNameLikeOrLastNameLike(name);
     }
 
     @Override
@@ -44,8 +43,18 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void deleteAccount(Account account) {
-        accountRepository.delete(account);
+    public Account findAccountByEmail(String email) {
+        return accountRepository.findByEmail(email);
+    }
+
+    @Override
+    public Account verifyAccountCredentials(String email, String password) {
+        return accountRepository.findAccountByEmailEqualsAndPasswordEquals(email, password);
+    }
+
+    @Override
+    public void deleteAccount(String id) {
+        accountRepository.deleteById(id);
     }
 
 }

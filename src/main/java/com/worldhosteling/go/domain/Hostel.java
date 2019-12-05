@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Data
@@ -15,24 +16,34 @@ public class Hostel {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
+    @Column(nullable = false)
+    @NotEmpty(message = "Must include a country.")
     private String country;
 
+    @Column(nullable = false)
+    @NotEmpty(message = "Must include a city.")
     private String city;
 
     private String region;
 
+    @Column(nullable = false)
+    @NotEmpty(message = "Must include a description.")
     private String description;
 
     private double latitude;
 
     private double longitude;
 
+    @Column(nullable = false)
+    @NotEmpty(message = "Must include a price.")
     private double price;
 
     private Integer rating;
 
     private String bannerImage;
 
+    @Column(nullable = false)
+    @NotEmpty(message = "Must include a hostel name.")
     private String name;
 
     @ElementCollection(targetClass=String.class)

@@ -3,12 +3,14 @@ package com.worldhosteling.go.domain;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 @Entity
@@ -20,20 +22,27 @@ public class Person {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
+    @Column(nullable = false)
+    @NotNull(message = "Must include your first name.")
     private String firstName;
 
+    @Column(nullable = false)
+    @NotNull(message = "Must include your last name.")
     private String lastName;
 
+    @Column(unique = true, nullable = false)
+    @NotNull(message = "Must include an email.")
     private String email;
 
     // TODO: need to make method to switch dates to sql I think
-    private Date birthDate;
+    @Column(nullable = false)
+    private LocalDate birthDate;
 
     private LocalDate createDate = LocalDate.now();
 
     public Person() {}
 
-    public Person(String id, String firstName, String lastName, String email, Date birthDate) {
+    public Person(String id, String firstName, String lastName, String email, LocalDate birthDate) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -43,11 +52,11 @@ public class Person {
 
 
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 

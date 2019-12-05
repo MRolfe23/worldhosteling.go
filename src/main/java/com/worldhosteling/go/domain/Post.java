@@ -3,6 +3,7 @@ package com.worldhosteling.go.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -15,15 +16,19 @@ public class Post {
     private Integer id;
 
     @OneToOne
+    @NotEmpty(message = "Must include an account from.")
     private Account from;
 
     @OneToOne
+    @NotEmpty(message = "Must include an account to.")
     private Account to;
 
+    @Column(nullable = false)
+    @NotEmpty(message = "Must include content.")
     private String content;
 
-    @ElementCollection(targetClass=String.class)
-    private List<String> photoList;
+    @OneToMany
+    private List<Photo> photoList;
 
     private LocalDate createDate = LocalDate.now();
 
@@ -35,7 +40,7 @@ public class Post {
 
     public Post() {}
 
-    public Post(Account from, Account to, String content, List<String> photoList, LocalDate createDate, List<Comment> commentList) {
+    public Post(Account from, Account to, String content, List<Photo> photoList, LocalDate createDate, List<Comment> commentList) {
         this.from = from;
         this.to = to;
         this.content = content;
@@ -76,11 +81,11 @@ public class Post {
         this.content = content;
     }
 
-    public List<String> getPhotoList() {
+    public List<Photo> getPhotoList() {
         return photoList;
     }
 
-    public void setPhotoList(List<String> photoList) {
+    public void setPhotoList(List<Photo> photoList) {
         this.photoList = photoList;
     }
 

@@ -3,7 +3,9 @@ package com.worldhosteling.go.domain;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -12,6 +14,8 @@ public class Account extends Person {
 
     private String userName;
 
+    @Column(nullable = false)
+    @NotNull(message = "Must include a password.")
     private String password;
 
     private String accountType;
@@ -48,7 +52,7 @@ public class Account extends Person {
         this.profilePicture = profilePicture;
     }
 
-    public Account(String id, String firstName, String lastName, String email, Date birthDate, String userName, String password, String accountType, String aboutMe, String profilePicture, String backgroundPicture, List<Photo> photoList, List<Account> friendList, List<Hostel> hostelList, boolean isActive, boolean isPrivate) {
+    public Account(String id, String firstName, String lastName, String email, LocalDate birthDate, String userName, String password, String accountType, String aboutMe, String profilePicture, String backgroundPicture, List<Photo> photoList, List<Account> friendList, List<Hostel> hostelList, boolean isActive, boolean isPrivate) {
         super(id, firstName, lastName, email, birthDate);
         this.userName = userName;
         this.password = password;

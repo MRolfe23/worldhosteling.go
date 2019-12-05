@@ -3,6 +3,7 @@ package com.worldhosteling.go.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 
@@ -15,8 +16,11 @@ public class Comment {
     private Integer id;
 
     @OneToOne
+    @NotEmpty(message = "Must include an account from.")
     private Account from;
 
+    @Column(nullable = false)
+    @NotEmpty(message = "Cannot send empty comment.")
     private String content;
 
     private String photo;
