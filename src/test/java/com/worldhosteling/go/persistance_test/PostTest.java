@@ -1,9 +1,9 @@
 package com.worldhosteling.go.persistance_test;
 
 import com.worldhosteling.go.WorldhostelingApplication;
-import com.worldhosteling.go.domain.*;
-import com.worldhosteling.go.repository.*;
-import com.worldhosteling.go.service.*;
+import com.worldhosteling.go.models.*;
+import com.worldhosteling.go.repositories.*;
+import com.worldhosteling.go.services.*;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
