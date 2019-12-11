@@ -22,7 +22,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
     //region    FIELDS / PROPERTIES
     @Value("${spring.security.authentication.method}")
-    private String authenticationMethod;
+    private String SECURITY_METHOD;
     //endregion
 
     private AccountService accountService;
@@ -38,6 +38,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
         String targetUrl = determineTargetUrl(authentication, request.getSession());
 
+        redirectStrategy.sendRedirect(request, response, targetUrl);
     }
 
     protected String determineTargetUrl(Authentication authentication, HttpSession session) {

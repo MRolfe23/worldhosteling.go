@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.ldap.authentication.ad.ActiveDirectoryLdapAuthenticationProvider;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.sql.DataSource;
 
@@ -116,7 +117,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .and().sessionManagement()
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-//            http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+            http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
                 break;
         }
     }

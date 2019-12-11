@@ -2,14 +2,17 @@ package com.worldhosteling.go.services;
 
 import com.worldhosteling.go.models.PrivateMessage;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface PrivateMessageService {
 
     PrivateMessage savePrivateMessage(PrivateMessage privateMessage);
 
-    Optional<PrivateMessage> findPrivateMessageById(Integer id);
+    List<PrivateMessage> findAllPrivateMessages();
 
-    void deletePrivateMessage(PrivateMessage privateMessage);
+    PrivateMessage findPrivateMessageById(Integer id);
+
+    void deletePrivateMessage(Integer id);
 
 }

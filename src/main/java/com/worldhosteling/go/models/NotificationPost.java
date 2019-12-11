@@ -3,7 +3,7 @@ package com.worldhosteling.go.models;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
@@ -14,15 +14,15 @@ public class NotificationPost {
     private Integer id;
 
     @OneToOne
-    @NotEmpty(message = "Must include an account from.")
+    @NotNull(message = "Must include an account from.")
     private Account from;
 
     @OneToOne
-    @NotEmpty(message = "Must include an account to.")
+    @NotNull(message = "Must include an account to.")
     private Account to;
 
     @OneToOne
-    @NotEmpty(message = "Must include a post.")
+    @NotNull(message = "Must include a post.")
     private Post post;
 
     private boolean isSeen = false;

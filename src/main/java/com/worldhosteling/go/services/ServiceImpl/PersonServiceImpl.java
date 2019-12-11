@@ -31,8 +31,8 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Optional<Person> findPersonById(String id) {
-        return personRepository.findById(id);
+    public Person findPersonById(String id) {
+        return personRepository.findById(id).orElse(null);
     }
 
     @Override

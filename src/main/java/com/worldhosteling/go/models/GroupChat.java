@@ -3,7 +3,7 @@ package com.worldhosteling.go.models;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
@@ -15,14 +15,14 @@ public class GroupChat {
     private Integer id;
 
     @Column(nullable = false)
-    @NotEmpty(message = "Must include a name.")
+    @NotNull(message = "Must include a name.")
     private String name;
 
     private String createDate;
 
     @OneToMany
     @Column(nullable = false)
-    @NotEmpty(message = "Must include at least one account to group chat.")
+    @NotNull(message = "Must include at least one account to group chat.")
     private List<Account> groupChatList;
 
     public GroupChat() {}

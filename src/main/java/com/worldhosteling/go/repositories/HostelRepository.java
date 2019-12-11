@@ -19,4 +19,6 @@ public interface HostelRepository extends CrudRepository<Hostel, String> {
 
     List<Hostel> findAllByRatingLike(Integer rating);
 
+    void deleteHostelById(String id);
+
 }

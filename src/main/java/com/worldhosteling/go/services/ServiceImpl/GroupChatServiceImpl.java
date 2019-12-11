@@ -23,8 +23,8 @@ public class GroupChatServiceImpl implements GroupChatService {
     }
 
     @Override
-    public Optional<GroupChat> findGroupChatById(Integer id) {
-        return groupChatRepository.findById(id);
+    public GroupChat findGroupChatById(Integer id) {
+        return groupChatRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -33,8 +33,8 @@ public class GroupChatServiceImpl implements GroupChatService {
     }
 
     @Override
-    public void deleteGroupChat(GroupChat groupChat) {
-        groupChatRepository.delete(groupChat);
+    public void deleteGroupChat(Integer id) {
+        groupChatRepository.deleteById(id);
     }
 
 }

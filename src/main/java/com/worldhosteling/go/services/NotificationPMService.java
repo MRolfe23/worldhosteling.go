@@ -9,12 +9,12 @@ public interface NotificationPMService {
 
     NotificationPM saveNotificationPM(NotificationPM notificationPM);
 
-    Optional<NotificationPM> findNotificationPMById(Integer id);
+    NotificationPM findNotificationPMById(Integer id);
 
     List<NotificationPM> findAllNotificationPM();
 
     List<NotificationPM> findAllNotificationPMByGroupChatId(Integer id);
 
-    void deleteNotificationPM(NotificationPM notificationPM);
+    void deleteNotificationPM(Integer id);
 
 }

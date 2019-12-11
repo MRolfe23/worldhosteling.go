@@ -9,9 +9,11 @@ import java.util.Optional;
 
 public interface NotificationPostService {
 
+    List<NotificationPost> findAllNotificationPost();
+
     NotificationPost saveNotificationPost(NotificationPost notificationPost);
 
-    Optional<NotificationPost> findNotificationPostById(Integer id);
+    NotificationPost findNotificationPostById(Integer id);
 
     List<NotificationPost> findNotificationPostByTo(Account account);
 
@@ -19,6 +21,6 @@ public interface NotificationPostService {
 
     List<NotificationPost> findNotificationPostByIsSeen(boolean bool);
 
-    void deleteNotificationPost(NotificationPost notificationPost);
+    void deleteNotificationPost(Integer id);
 
 }

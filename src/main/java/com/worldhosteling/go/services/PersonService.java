@@ -9,7 +9,7 @@ public interface PersonService {
 
     Person savePerson(Person person);
 
-    Optional<Person> findPersonById(String id);
+    Person findPersonById(String id);
 
     List<Person> findAllPerson();
 

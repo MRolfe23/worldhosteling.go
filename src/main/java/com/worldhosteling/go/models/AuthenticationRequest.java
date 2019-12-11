@@ -3,9 +3,13 @@ import java.io.Serializable;
 
 public class AuthenticationRequest implements Serializable {
 
-
     private String username;
     private String password;
+
+    //need default constructor for JSON Parsing
+    public AuthenticationRequest() {
+
+    }
 
     public String getUsername() {
         return username;
@@ -21,12 +25,6 @@ public class AuthenticationRequest implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    //need default constructor for JSON Parsing
-    public AuthenticationRequest()
-    {
-
     }
 
     public AuthenticationRequest(String username, String password) {

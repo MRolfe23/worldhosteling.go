@@ -23,8 +23,8 @@ public class NotificationPMServiceImpl implements NotificationPMService {
     }
 
     @Override
-    public Optional<NotificationPM> findNotificationPMById(Integer id) {
-        return notificationPMRepository.findById(id);
+    public NotificationPM findNotificationPMById(Integer id) {
+        return notificationPMRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class NotificationPMServiceImpl implements NotificationPMService {
     }
 
     @Override
-    public void deleteNotificationPM(NotificationPM notificationPM) {
-        notificationPMRepository.delete(notificationPM);
+    public void deleteNotificationPM(Integer id) {
+        notificationPMRepository.deleteById(id);
     }
 }

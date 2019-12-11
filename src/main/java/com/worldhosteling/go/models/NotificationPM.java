@@ -3,7 +3,7 @@ package com.worldhosteling.go.models;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 
 // @Data -- Lombok, is used to auto-generate getters and setters and toString and constructors without coding it out.
@@ -17,12 +17,12 @@ public class NotificationPM {
     private Integer id;
 
     @OneToOne
-    @NotEmpty(message = "Must include an account from.")
+    @NotNull(message = "Must include an account from.")
     private Account from;
 
     // TODO: Might need to make this a many to one or one to one
     @ManyToOne
-    @NotEmpty(message = "Must include a group chat.")
+    @NotNull(message = "Must include a group chat.")
     private GroupChat groupChat;
 
     private boolean isSeen;

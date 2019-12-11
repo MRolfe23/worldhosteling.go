@@ -9,11 +9,11 @@ public interface GroupChatService {
 
     GroupChat saveGroupChat(GroupChat groupChat);
 
-    Optional<GroupChat> findGroupChatById(Integer id);
+    GroupChat findGroupChatById(Integer id);
 
     List<GroupChat> findAllGroupChats();
 
-    void deleteGroupChat(GroupChat groupChat);
+    void deleteGroupChat(Integer id);
 
 //    List<GroupChat> findGroupChatByAccountFirstNameOrLastName(String name);
 

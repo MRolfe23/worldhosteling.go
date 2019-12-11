@@ -19,13 +19,18 @@ public class NotificationPostServiceImpl implements NotificationPostService {
     }
 
     @Override
+    public List<NotificationPost> findAllNotificationPost() {
+        return (List<NotificationPost>) notificationPostRepository.findAll();
+    }
+
+    @Override
     public NotificationPost saveNotificationPost(NotificationPost notificationPost) {
         return notificationPostRepository.save(notificationPost);
     }
 
     @Override
-    public Optional<NotificationPost> findNotificationPostById(Integer id) {
-        return notificationPostRepository.findById(id);
+    public NotificationPost findNotificationPostById(Integer id) {
+        return notificationPostRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -44,7 +49,8 @@ public class NotificationPostServiceImpl implements NotificationPostService {
     }
 
     @Override
-    public void deleteNotificationPost(NotificationPost notificationPost) {
-        notificationPostRepository.delete(notificationPost);
+    public void deleteNotificationPost(Integer id) {
+        notificationPostRepository.deleteById(id);
     }
+
 }

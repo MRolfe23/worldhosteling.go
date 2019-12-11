@@ -9,6 +9,8 @@ public interface HostelService {
 
     Hostel saveHostel(Hostel hostel);
 
+    List<Hostel> findAllHostels();
+
     Optional<Hostel> findHostelById(String id);
 
     List<Hostel> findHostelsByName(String name);
@@ -23,6 +25,6 @@ public interface HostelService {
 
     List<Hostel> findAllHostelsByRating(Integer rating);
 
-    void deleteHostel(Hostel hostel);
+    void deleteHostel(String id);
 
 }

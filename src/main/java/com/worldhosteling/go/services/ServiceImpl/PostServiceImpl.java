@@ -35,17 +35,17 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> findAllPostByTo(Account account) {
-        return postRepository.findAllByTo(account);
+    public List<Post> findAllPostByTo(Integer id) {
+        return postRepository.findAllByTo(id);
     }
 
     @Override
-    public List<Post> findAllPostByFrom(Account account) {
-        return postRepository.findAllByFrom(account);
+    public List<Post> findAllPostByFrom(Integer id) {
+        return postRepository.findAllByFrom(id);
     }
 
     @Override
-    public void deletePost(Post post) {
-        postRepository.delete(post);
+    public void deletePost(Integer id) {
+        postRepository.deletePostById(id);
     }
 }

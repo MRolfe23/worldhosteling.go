@@ -6,6 +6,7 @@ import com.worldhosteling.go.services.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,12 +25,17 @@ public class PhotoServiceImpl implements PhotoService {
     }
 
     @Override
-    public Optional<Photo> findPhotoById(Integer id) {
-        return photoRepository.findById(id);
+    public Photo findPhotoById(Integer id) {
+        return photoRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void deletePhoto(Photo photo) {
-        photoRepository.delete(photo);
+    public List<Photo> findAllPhotos() {
+        return (List<Photo>) photoRepository.findAll();
+    }
+
+    @Override
+    public void deletePhoto(Integer id) {
+        photoRepository.deleteById(id);
     }
 }

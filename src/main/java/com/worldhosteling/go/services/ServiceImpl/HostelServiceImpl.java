@@ -23,6 +23,11 @@ public class HostelServiceImpl implements HostelService {
     }
 
     @Override
+    public List<Hostel> findAllHostels() {
+        return (List<Hostel>) hostelRepository.findAll();
+    }
+
+    @Override
     public Optional<Hostel> findHostelById(String id) {
         return hostelRepository.findById(id);
     }
@@ -58,8 +63,8 @@ public class HostelServiceImpl implements HostelService {
     }
 
     @Override
-    public void deleteHostel(Hostel hostel) {
-        hostelRepository.delete(hostel);
+    public void deleteHostel(String id) {
+        hostelRepository.deleteHostelById(id);
     }
 
 }

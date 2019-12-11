@@ -14,10 +14,10 @@ public interface PostService {
 
     List<Post> findAllPosts();
 
-    List<Post> findAllPostByTo(Account account);
+    List<Post> findAllPostByTo(Integer id);
 
-    List<Post> findAllPostByFrom(Account account);
+    List<Post> findAllPostByFrom(Integer id);
 
-    void deletePost(Post post);
+    void deletePost(Integer id);
 
 }

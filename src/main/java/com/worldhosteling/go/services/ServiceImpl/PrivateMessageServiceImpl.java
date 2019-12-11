@@ -5,6 +5,7 @@ import com.worldhosteling.go.repositories.PrivateMessageRepository;
 import com.worldhosteling.go.services.PrivateMessageService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,12 +23,17 @@ public class PrivateMessageServiceImpl implements PrivateMessageService {
     }
 
     @Override
-    public Optional<PrivateMessage> findPrivateMessageById(Integer id) {
-        return privateMessageRepository.findById(id);
+    public List<PrivateMessage> findAllPrivateMessages() {
+        return (List<PrivateMessage>) privateMessageRepository.findAll();
     }
 
     @Override
-    public void deletePrivateMessage(PrivateMessage privateMessage) {
-        privateMessageRepository.delete(privateMessage);
+    public PrivateMessage findPrivateMessageById(Integer id) {
+        return privateMessageRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void deletePrivateMessage(Integer id) {
+        privateMessageRepository.deleteById(id);
     }
 }
